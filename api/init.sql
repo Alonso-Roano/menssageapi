@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS mensajes (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR NOT NULL,
+  correo VARCHAR NOT NULL,
+  asunto VARCHAR NOT NULL,
+  telefono VARCHAR NOT NULL,
+  descripcion TEXT,
+  edad INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR UNIQUE NOT NULL,
+  password VARCHAR NOT NULL
+);
