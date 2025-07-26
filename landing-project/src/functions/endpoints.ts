@@ -7,11 +7,11 @@ const endpoints = {
     user: { method: 'GET', url: '/auth/v1/user' },
   },
   mensaje: {
-    listar: { method: 'GET', url: '/functions/v1/rapid-responder' },
-    obtener: { method: 'GET', url: '/functions/v1/rapid-responder/{id}' },
-    crear: { method: 'POST', url: '/functions/v1/rapid-responder' },
-    actualizar: { method: 'PUT', url: '/functions/v1/rapid-responder/{id}' },
-    eliminar: { method: 'DELETE', url: '/functions/v1/rapid-responder/{id}' },
+    listar: { method: 'GET', url: '/api/mensajes' },
+    obtener: { method: 'GET', url: '/api/mensajes/{id}' },
+    crear: { method: 'POST', url: '/api/mensajes' },
+    actualizar: { method: 'PUT', url: '/api/mensajes/{id}' },
+    eliminar: { method: 'DELETE', url: '/api/mensajes/{id}' },
   }
 }
 

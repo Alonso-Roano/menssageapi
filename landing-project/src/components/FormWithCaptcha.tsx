@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import Modal from "./Modal";
+import { apiRequest } from "../functions/auth";
 
 const FormWithCaptcha = () => {
   const [formData, setFormData] = useState({
@@ -44,18 +45,13 @@ const FormWithCaptcha = () => {
     }
 
     try {
-      const res = await fetch(
-        "https://qftkplcxrwkqbapiibxn.supabase.co/functions/v1/rapid-responder",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ captchaToken, ...formData }),
-        }
+      const res = await apiRequest(
+        "mensaje.crear",
+        {},
+        { captchaToken, ...formData }
       );
 
-      if (res.ok) {
+      if (res) {
         // resetear tu form, captcha, etc.
         setFormData({
           nombre: "",

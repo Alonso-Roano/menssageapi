@@ -62,7 +62,7 @@ import { logout } from "../functions/authFunctions";
 
   document.addEventListener("DOMContentLoaded", () => {
    
-const token = localStorage.getItem("accessToken");
+const token = localStorage.getItem("token");
 
 if(!token) window.location.href="/login"
 console.log("hola")
@@ -70,8 +70,7 @@ console.log("hola")
 
     if (logoutButton) {
       logoutButton.addEventListener("click", () => {
-      const token = localStorage.getItem("accessToken");
-        logout(token);
+      localStorage.clear();
         window.location.href="/login"
       });
     } else {

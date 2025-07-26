@@ -17,7 +17,6 @@ export async function register(
         headers: { Authorization: `Bearer ${ANON_KEY}` },
       }
     );
-    saveAuthData(data);
     return data;
   } catch (error: any) {
     return { error: error.response?.data || error.message };
@@ -37,7 +36,6 @@ export async function login(
         headers: { Authorization: `Bearer ${ANON_KEY}` },
       }
     );
-    saveAuthData(data);
     return data;
   } catch (error: any) {
     return { error: error.response?.data || error.message };
@@ -56,7 +54,6 @@ export async function refreshToken(
         headers: { Authorization: `Bearer ${ANON_KEY}` },
       }
     );
-    saveAuthData(data);
     return data;
   } catch (error: any) {
     return { error: error.response?.data || error.message };

@@ -328,7 +328,7 @@ const elementosPorPagina = 5; // Puedes ajustar este valor
     const obtenerDatos = async () => {
       try {
         const res:any = await apiRequest("mensaje.listar");
-        setDatos(res.data);
+        setDatos(res.mensajes);
       } catch (err) {
         console.error("Error:", err);
         setError("Error al cargar los datos");
@@ -348,7 +348,7 @@ const elementosPorPagina = 5; // Puedes ajustar este valor
     );
   }
 
-  const totalPaginas = Math.ceil(datos.length / elementosPorPagina);
+  const totalPaginas = datos.length > 0 ?  Math.ceil(datos.length / elementosPorPagina) : 0;
 const indiceInicio = (paginaActual - 1) * elementosPorPagina;
 const indiceFin = indiceInicio + elementosPorPagina;
 const datosPaginados = datos.slice(indiceInicio, indiceFin);
@@ -467,7 +467,7 @@ const datosPaginados = datos.slice(indiceInicio, indiceFin);
             {datosPaginados.length > 0 && (
               <div className="px-6 py-3 flex items-center justify-between border-t border-gray-800 bg-gray-800/50 text-xs text-gray-400">
                 <div>
-                Mostrando <span className="font-medium text-white">{indiceInicio + 1}</span> a <span className="font-medium text-white">{Math.min(indiceFin, datos.length)}</span> de <span className="font-medium text-white">{datos.length}</span> resultados
+                Mostrando <span className="font-medium text-white">{indiceInicio + 1}</span> a <span className="font-medium text-white">{datos.length > 0 ? Math.min(indiceFin, datos.length):0}</span> de <span className="font-medium text-white">{datos.length ?? 0}</span> resultados
 
                 </div>
                 <div className="flex items-center space-x-2">

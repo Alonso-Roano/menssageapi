@@ -107,6 +107,7 @@ import Layout from "../layouts/Layout.astro";
     let respuesta:any = "error"
     try {
       respuesta = await login(email, password);
+      console.log(respuesta)
      if(respuesta.token){
       localStorage.setItem("token",respuesta.token)
       window.location.href = "/dashboard";
