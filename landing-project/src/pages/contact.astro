@@ -1,0 +1,39 @@
+---
+//import ContactForm from '../components/ContactForm.astro';
+import Layout from '../layouts/Layout.astro';
+import FormWithCaptcha from '../components/FormWithCaptcha.tsx';
+interface Props {
+	title?: string;
+	subtitle?: string;
+}
+
+const props = Astro.props as Props;
+
+const defaultProps = {
+	title: "Contáctanos",
+	subtitle: "¡Estamos aquí para ayudarte!"
+};
+
+const finalProps = { ...defaultProps, ...props };
+---
+
+<Layout>
+	
+	<main class="min-h-screen  bg-gradient-to-br from-zinc-900 via-gray-900 to-zinc-900 text-white">
+		<section class="">
+				<div class=" mt-12 max-w-lg mx-auto text-center border border-gray-700 p-4 rounded-lg">
+					<h1 class="text-5xl md:text-3xl font-bold  text-white shadow-text">{finalProps.title}</h1>
+					<p class="text-xl md:text-lg mt-4 text-gray-200">{finalProps.subtitle}</p>
+					
+					<FormWithCaptcha client:only="react"/>
+			
+			</div>
+		</section>
+	</main>
+</Layout>
+<script>
+import { apiRequest } from '../functions/auth';
+import { register } from '../functions/authFunctions';
+const api = register("carlosroano202@gmail.com","Carlosroano201")
+console.log(api)
+</script>
