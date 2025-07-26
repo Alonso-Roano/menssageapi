@@ -1,0 +1,220 @@
+---
+interface Props {
+	title?: string;
+	subtitle?: string;
+	ctaText?: string;
+	ctaUrl?: string;
+}
+
+const props = Astro.props as Props;
+
+const defaultProps = {
+	title: "Bienvenido a Nuestra Plataforma",
+	subtitle: "Descubre soluciones innovadoras para tu negocio",
+	ctaText: "Comenzar ahora",
+	ctaUrl: "/login",
+};
+
+const finalProps = { ...defaultProps, ...props };
+import ButtonRedirect from "./ButtonRedirect.tsx";
+
+// Agregar estilos para las animaciones
+const animationStyles = `
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  
+  .scroll-down:hover {
+    opacity: 1;
+  }
+  
+  .scroll-down::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    background: white;
+    animation: scrollDown 2s infinite;
+    transform: translateX(-50%);
+  }
+  
+  @keyframes scrollDown {
+    0% { height: 30px; opacity: 1; }
+    100% { height: 0; opacity: 0; transform: translate(-50%, 20px); }
+  }
+  
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+`;
+---
+
+<style>
+	 @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  
+  .scroll-down:hover {
+    opacity: 1;
+  }
+  
+  .scroll-down::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    background: white;
+    animation: scrollDown 2s infinite;
+    transform: translateX(-50%);
+  }
+  
+  @keyframes scrollDown {
+    0% { height: 30px; opacity: 1; }
+    100% { height: 0; opacity: 0; transform: translate(-50%, 20px); }
+  }
+  
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+
+<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-zinc-900 via-gray-900 to-zinc-900 text-white p-4 overflow-hidden">
+  <!-- Partículas de fondo -->
+  <div id="particles-js" class="absolute inset-0 z-0"></div>
+  
+  <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+    <div class="floating">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 py-4 bg-gradient-to-r from-purple-500 via-blue-400 to-indigo-500 inline-block text-transparent bg-clip-text animate-gradient">
+        {finalProps.title}
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+        {finalProps.subtitle}
+      </p>
+      <div class="transform transition-transform duration-300 hover:scale-105 inline-block">
+        <ButtonRedirect client:only="react" />
+      </div>
+    </div>
+  </div>
+  
+  <!-- Indicador de scroll -->
+  <a href="#next-section" class="scroll-down">
+    Scroll Down
+  </a>
+  
+  <!-- Script para partículas -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: '#ffffff' },
+          shape: { type: 'circle' },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#ffffff',
+            opacity: 0.2,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false,
+            attract: { enable: false, rotateX: 600, rotateY: 1200 }
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: { enable: true, mode: 'grab' },
+            onclick: { enable: true, mode: 'push' },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 140, line_linked: { opacity: 0.5 } },
+            push: { particles_nb: 4 }
+          }
+        },
+        retina_detect: true
+      });
+    });
+  </script>
+</section>
+
+<style>
+  .animate-gradient {
+    background-size: 200% auto;
+    animation: gradient 8s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .shadow-text {
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+</style>
