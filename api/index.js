@@ -1,6 +1,6 @@
 import express from 'express';
-import mensajes from './src/mensajes';
-import auth from './src/auth';
+import mensajes from './src/mensajes.js';
+import auth from './src/auth.js';
 import cors from 'cors';
 const app = express();
 app.use(express.json());

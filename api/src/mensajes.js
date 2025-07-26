@@ -1,13 +1,13 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import db from './db';
+import db from './db.js';
 import fetch from 'node-fetch';
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET!;
-const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY!;
+const JWT_SECRET = process.env.JWT_SECRET;
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 
-function verifyToken(req:any, res:any, next:any) {
+function verifyToken(req, res, next) {
   const auth = req.headers.authorization;
   if (!auth) return res.status(401).json({ error: 'No token' });
 
@@ -20,7 +20,7 @@ function verifyToken(req:any, res:any, next:any) {
   }
 }
 
-async function verifyCaptcha(token: string) : Promise<any>{
+async function verifyCaptcha(token){
   const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },

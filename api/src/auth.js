@@ -1,10 +1,10 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import db from './db';
+import db from './db.js';
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET!;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
