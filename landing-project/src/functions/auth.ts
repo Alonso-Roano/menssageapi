@@ -3,8 +3,8 @@ import type { AxiosRequestConfig, AxiosResponse } from "axios";
 import endpoints from "./endpoints";
 import { storage } from "./storage";
 
-const API_BASE_URL = import.meta.env.PUBLIC_API_URL_CLEAN ?? 'https://fallback-url.com';
-const ANON_KEY = import.meta.env.PUBLIC_API_KEY ?? 'ANON_KEY_FALLBACK';
+const API_BASE_URL = import.meta.env.VITE_PUBLIC_API_URL_CLEAN ?? 'https://fallback-url.com';
+const ANON_KEY = import.meta.env.VITE_PUBLIC_API_KEY ?? 'ANON_KEY_FALLBACK';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
