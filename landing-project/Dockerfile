@@ -12,6 +12,11 @@ RUN npm install
 
 # Copia el resto de los archivos
 COPY . .
+ARG PUBLIC_API_URL_CLEAN
+ARG PUBLIC_API_KEY
+# Exporta las variables para que npm run build las vea
+ENV PUBLIC_API_URL_CLEAN=$PUBLIC_API_URL_CLEAN
+ENV PUBLIC_API_KEY=$PUBLIC_API_KEY
 
 # Construye la aplicación Astro
 RUN npm run build
